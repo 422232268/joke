@@ -2,22 +2,23 @@
  * @Autor: za-wangxuezhong
  * @Date: 2020-09-20 22:38:08
  * @LastEditors: za-wangxuezhong
- * @LastEditTime: 2020-09-21 21:30:34
+ * @LastEditTime: 2020-10-08 06:34:10
  * @Description:
  * @ToDo:
  * @JiraID: SOMPO-
  */
-import {JokeTreeItem} from './joke';
+import {zaTreeItem} from './define';
 import {TreeDataProvider, EventEmitter, Event} from 'vscode';
-import {ApiService} from './servce';
+import {ApiService} from './data';
 
-export class JokeDateProvider implements TreeDataProvider<JokeTreeItem>{
+export class zaDataProvider implements TreeDataProvider<zaTreeItem>{
     private _onDidChangeTreeData: EventEmitter<any> = new EventEmitter<any>();
 
     readonly onDidChangeTreeData: Event<any> = this._onDidChangeTreeData.event;
     private service: ApiService;
 
     constructor(service: ApiService) {
+        console.log(service);
         this.service = service;
     }
 
@@ -25,15 +26,15 @@ export class JokeDateProvider implements TreeDataProvider<JokeTreeItem>{
         this._onDidChangeTreeData.fire(undefined);
     }
 
-    getTreeItem(element: JokeTreeItem) {
+    getTreeItem(element: zaTreeItem) {
         return element;
     }
 
-    getChildren(element: JokeTreeItem) {
-        return this.service.getJokes('1', '23b9da300d551ea41a36559234c5dc64');
+    getChildren(element: zaTreeItem) {
+        return this.service.getChapter();
     }
 
-    getParent(element: JokeTreeItem) {
+    getParent(element: zaTreeItem) {
         return null;
     }
 

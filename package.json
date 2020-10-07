@@ -1,7 +1,7 @@
 {
-	"name": "joke",
+	"name": "za",
 	"displayName": "demo",
-	"description": "abot a joke",
+	"description": "abot a za",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.49.0"
@@ -10,38 +10,39 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onView:view.joke",
-		"showcontent:joke.click",
-        "onCommand:joke.click",
-		"onCommand:joke.helloWorld"
-	],
+		"onView:view.za",
+		"showcontent:za.click",
+        "onCommand:za.click",
+		"onCommand:za.helloWorld"
+    ],
+    "publisher": "wangxuezhong",
 	"main": "./out/extension.js",
 	"contributes": {
 		"viewsContainers": {
 			"activitybar": [
 				{
-					"id": "jokeView",
-					"title": "当前文档",
+					"id": "zaView",
+					"title": "文档",
 					"icon": "./src/img/svg/file.svg"
 				}
 			]
 		},
 		"views": {
-			"jokeView": [
+			"zaView": [
 				{
-					"name": "joke",
-					"id": "view.joke"
+					"name": "za-doc",
+					"id": "view.za"
 				}
 			]
 		},
 		"commands": [
 			{
-				"command": "joke.helloWorld",
+				"command": "za.helloWorld",
 				"title": "Hello World"
             },
             {
-                "command": "joke.click",
-                "title": "joke click"
+                "command": "za.click",
+                "title": "za click"
             }
 		]
 	},
@@ -68,5 +69,8 @@
 	},
 	"dependencies": {
 		"axios": "^0.20.0"
-	}
+    },
+    "repository": {
+        "url": "https://github.com/422232268/joke"
+    }
 }
