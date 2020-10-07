@@ -12,10 +12,10 @@
 	"activationEvents": [
 		"onView:view.za",
 		"showcontent:za.click",
-        "onCommand:za.click",
+		"onCommand:za.click",
 		"onCommand:za.helloWorld"
-    ],
-    "publisher": "wangxuezhong",
+	],
+	"publisher": "wangxuezhong",
 	"main": "./out/extension.js",
 	"contributes": {
 		"viewsContainers": {
@@ -39,11 +39,11 @@
 			{
 				"command": "za.helloWorld",
 				"title": "Hello World"
-            },
-            {
-                "command": "za.click",
-                "title": "za click"
-            }
+			},
+			{
+				"command": "za.click",
+				"title": "za click"
+			}
 		]
 	},
 	"scripts": {
@@ -68,9 +68,10 @@
 		"vscode-test": "^1.4.0"
 	},
 	"dependencies": {
-		"axios": "^0.20.0"
-    },
-    "repository": {
-        "url": "https://github.com/422232268/joke"
-    }
+		"axios": "^0.20.0",
+		"marked": "^1.2.0"
+	},
+	"repository": {
+		"url": "https://github.com/422232268/joke"
+	}
 }

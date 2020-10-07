@@ -2,7 +2,7 @@
  * @Autor: za-wangxuezhong
  * @data: 2020-09-20 22:22:31
  * @LastEditors: za-wangxuezhong
- * @LastEditTime: 2020-10-08 06:34:01
+ * @LastEditTime: 2020-10-08 07:18:48
  * @Description:
  * @ToDo:
  * @JiraID: SOMPO-
@@ -16,7 +16,7 @@ export class ApiService {
     private items: Array<zaTreeItem> = [];
     getChapter(): Array<zaTreeItem> {
         let data: Array<string> = [];
-        data = fs.readdirSync((join(__dirname, '../md')));
+        data = fs.readdirSync((join(__dirname, '../src/md')));
         for (let i = 0; i < data.length; i++) {
             console.log(data[i]);
             const za = {
@@ -30,7 +30,7 @@ export class ApiService {
     }
     getContent(Chapter:string): any {
         let data: string = '';
-        data = fs.readFileSync((join(__dirname, `../md/${Chapter}`)));
+        data = fs.readFileSync((join(__dirname, `../src/md/${Chapter}`)));
         return marked(data.toString());
     }
 }
