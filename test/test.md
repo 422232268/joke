@@ -1,14 +1,12 @@
 <!--
  * @Autor: za-wangxuezhong
- * @Date: 2020-10-08 17:07:55
+ * @Date: 2020-10-08 04:12:06
  * @LastEditors: za-wangxuezhong
- * @LastEditTime: 2020-11-18 16:34:46
+ * @LastEditTime: 2020-10-08 17:53:01
  * @Description:
  * @ToDo:
  * @JiraID: SOMPO-
 -->
-<!-- es6 -->
-<!-- Arr -->
 # 打印命令
 
 ### 此命令能够快速的答应内容到控制台
@@ -39,15 +37,12 @@ clg
 ```
 
 <div style="display:none">
-    "Print to console": {
-            "prefix": "clg",
+    "Print console": {
+            "prefix": "cl",
             "body": [
                 "console.log('$1');",
                 "$2"
             ],
-            "description": "Log output to console"
+            "description": "Log otput to console"
     }
 </div>
-
-
-

@@ -3,17 +3,20 @@
  * @Autor: za-wangxuezhong
  * @Date: 2020-09-20 21:52:48
  * @LastEditors: za-wangxuezhong
- * @LastEditTime: 2020-10-08 06:40:28
+ * @LastEditTime: 2020-11-19 11:22:26
  * @Description:
  * @ToDo:
  * @JiraID: SOMPO-
  */
 import * as vscode from 'vscode';
-import {ApiService} from './data';
+import {ApiService, ApiServices} from './data';
 import {zaDataProvider} from './defineDataProvider'
+import snippet from './snippet';
+
 export function activate(context: vscode.ExtensionContext) {
     const service = new ApiService();
-    vscode.window.registerTreeDataProvider('view.za', new zaDataProvider(service));
+    const services = new ApiServices();
+    vscode.window.registerTreeDataProvider('view.za', new zaDataProvider(service, services));
     const panel = vscode.window.createWebviewPanel(
         'webview',
         'za-readme',
@@ -28,11 +31,17 @@ export function activate(context: vscode.ExtensionContext) {
         </html?
         `;
     });
+
+    let showtitle = vscode.commands.registerCommand('za.showtitle', (hashId, content) => {
+        services.getChapters();
+    });
 	let disposable = vscode.commands.registerCommand('za.helloWorld', () => {
 		vscode.window.showInformationMessage('Hello World from demo!');
-	});
+    });
+
+    snippet(context);
     context.subscriptions.push(disposable);
     context.subscriptions.push(showcontent);
-
+    context.subscriptions.push(showtitle);
 }
 export function deactivate() {}

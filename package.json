@@ -13,17 +13,48 @@
 		"onView:view.za",
 		"showcontent:za.click",
 		"onCommand:za.click",
-		"onCommand:za.helloWorld"
+		"onCommand:za.helloWorld",
+		"onCommand:za.showtitle"
 	],
 	"publisher": "wangxuezhong",
 	"main": "./out/extension.js",
 	"contributes": {
+		"menus": {
+			"editor/context": [
+				{
+					"when": "editorFocus",
+					"command": "extension.sayHello",
+					"group": "navigation@6"
+				},
+				{
+					"when": "editorFocus",
+					"command": "extension.demo.getCurrentFilePath",
+					"group": "navigation@5"
+				},
+				{
+					"when": "editorFocus && resourceLangId == javascript",
+					"command": "extension.demo.testMenuShow",
+					"group": "z_commands"
+				},
+				{
+					"command": "extension.demo.openWebview",
+					"group": "navigation"
+				}
+			],
+			"editor/title/context": [
+				{
+					"when": "resourceLangId == javascript",
+					"command": "extension.demo.testMenuShow",
+					"group": "navigation"
+				}
+			]
+		},
 		"viewsContainers": {
 			"activitybar": [
 				{
 					"id": "zaView",
 					"title": "文档",
-					"icon": "./src/img/svg/file.svg"
+					"icon": "./out/file/img/file.png"
 				}
 			]
 		},
@@ -43,6 +74,30 @@
 			{
 				"command": "za.click",
 				"title": "za click"
+			},
+			{
+				"command": "za.showtitle",
+				"title": "za showtitle"
+			},
+			{
+				"command": "extension.demo.getCurrentFilePath",
+				"title": "za showtitle1"
+			},
+			{
+				"command": "extension.sayHello",
+				"title": "za showtitle2"
+			},
+			{
+				"command": "extension.demo.testMenuShow",
+				"title": "za showtitle3"
+			},
+			{
+				"command": "extension.demo.openWebview",
+				"title": "za showtitle4"
+			},
+			{
+				"command": "extension.demo.testMenuShow",
+				"title": "1234"
 			}
 		]
 	},
@@ -52,26 +107,25 @@
 		"lint": "eslint src --ext ts",
 		"watch": "tsc -watch -p ./",
 		"pretest": "npm run compile && npm run lint",
-        "test": "node ./out/test/runTest.js",
-        "build": "cp -rf ./file ./out && vsce package",
-        "generate": "ts-node ./src/generate"
-    },
+		"test": "node ./out/test/runTest.js",
+		"build": "cp -rf ./file ./out && vsce package",
+		"generate": "ts-node ./src/generateObj"
+	},
 	"devDependencies": {
-		"@types/vscode": "^1.49.0",
 		"@types/glob": "^7.1.3",
 		"@types/mocha": "^8.0.0",
 		"@types/node": "^14.0.27",
-		"eslint": "^7.6.0",
+		"@types/vscode": "^1.49.0",
 		"@typescript-eslint/eslint-plugin": "^3.8.0",
 		"@typescript-eslint/parser": "^3.8.0",
+		"eslint": "^7.6.0",
 		"glob": "^7.1.6",
+		"marked": "^1.2.3",
 		"mocha": "^8.0.1",
 		"typescript": "^3.8.3",
 		"vscode-test": "^1.4.0"
 	},
-	"dependencies": {
-		"marked": "^1.2.0"
-	},
+	"dependencies": {},
 	"repository": {
 		"url": "https://github.com/422232268/joke"
 	}

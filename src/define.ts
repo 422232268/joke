@@ -2,7 +2,7 @@
  * @Autor: za-wangxuezhong
  * @Date: 2020-09-20 22:10:52
  * @LastEditors: za-wangxuezhong
- * @LastEditTime: 2020-10-08 17:35:00
+ * @LastEditTime: 2020-11-17 04:28:48
  * @Description:
  * @ToDo:
  * @JiraID: SOMPO-
@@ -31,4 +31,24 @@ export class zaTreeItem extends TreeItem {
         };
         this.tooltip = '点击查看详情';
     }
+    isDirectory = false;
+}
+export class zaTreeItems extends TreeItem {
+
+    constructor(info: define) {
+        super('', TreeItemCollapsibleState.Expanded);
+        this.label = 'ZA';
+        this.id = info.hashId;
+        this.description = info.content;
+        this.command = {
+            title: 'ZAREADME',
+            command: 'za.showtitle',
+            arguments: [
+                info.hashId,
+                info.content
+            ],
+        };
+        this.tooltip = '点击查看目录';
+    }
+    isDirectory = true;
 }
