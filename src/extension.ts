@@ -3,13 +3,13 @@
  * @Autor: za-wangxuezhong
  * @Date: 2020-09-20 21:52:48
  * @LastEditors: za-wangxuezhong
- * @LastEditTime: 2020-11-19 11:22:26
+ * @LastEditTime: 2020-11-23 11:12:45
  * @Description:
  * @ToDo:
  * @JiraID: SOMPO-
  */
 import * as vscode from 'vscode';
-import {ApiService, ApiServices} from './data';
+import {ApiService, ApiServices} from './getData';
 import {zaDataProvider} from './defineDataProvider'
 import snippet from './snippet';
 
@@ -24,10 +24,10 @@ export function activate(context: vscode.ExtensionContext) {
         {
         }
     );
-    let showcontent = vscode.commands.registerCommand('za.click', (hashId,content) => {
+    let showcontent = vscode.commands.registerCommand('za.click', (hashId,content, position: string) => {
         panel.webview.html = `
         <html>
-            <body>${service.getContent(content)}</body>
+            <body>${service.getContent(position,content)}</body>
         </html?
         `;
     });

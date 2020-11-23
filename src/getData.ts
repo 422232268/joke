@@ -2,7 +2,7 @@
  * @Autor: za-wangxuezhong
  * @data: 2020-09-20 22:22:31
  * @LastEditors: za-wangxuezhong
- * @LastEditTime: 2020-11-19 11:22:02
+ * @LastEditTime: 2020-11-23 13:44:30
  * @Description:
  * @ToDo:
  * @JiraID: SOMPO-
@@ -11,30 +11,36 @@ import {zaTreeItems, zaTreeItem} from './define';
 const fs = require('fs');
 const path = require('path');
 const join = path.join;
-const marked = require("marked");
-console.log('12344356789876545678')
-console.log(marked);
+const marked = require("./marked.min.js");
+// const marked = require("./marked");
 export class ApiService {
+    private description: string = ''
     private items: Array<zaTreeItem> = [];
     // private devPath: string = '../';
     private devPath: string = './';
-    getChapter(): Array<zaTreeItem> {
+    getChapter(description: any): Array<zaTreeItem> {
+        this.items = [];
         let data: Array<string> = [];
-        data = fs.readdirSync((join(__dirname, this.devPath,'./file/article/es6/')));
+        this.description = description
+        data = fs.readdirSync((join(__dirname, this.devPath, `./file/article/${this.description}/`)));
         for (let i = 0; i < data.length; i++) {
-            console.log(data[i]);
             const za = {
                 hashId: data[i],
                 content: data[i],
+                position: this.description,
             }
             this.items.push(new zaTreeItem(za));
         }
         return this.items;
     }
-    getContent(Chapter:string): any {
+    getContent(position:string, Chapter:string): any {
         let data: string = '';
-        data = fs.readFileSync((join(__dirname, this.devPath,`./file/article/es6/${Chapter}`)));
-        return marked(data.toString());
+        data = fs.readFileSync((join(__dirname, this.devPath, `./file/article/${position}/${Chapter}`)));
+        try {
+            return marked(data.toString());
+        } catch (e){
+            console.log(e)
+        }
     }
 }
 
@@ -43,13 +49,14 @@ export class ApiServices {
     // private devPath: string = '../';
     private devPath: string = './';
     getChapters(): Array<zaTreeItems> {
+        this.items = [];
         let data: Array<string> = [];
         data = fs.readdirSync((join(__dirname, this.devPath, './file/article')));
         for (let i = 0; i < data.length; i++) {
-            console.log(data[i]);
             const za = {
                 hashId: data[i],
                 content: data[i],
+                position: ''
             }
             this.items.push(new zaTreeItems(za));
         }

@@ -2,7 +2,7 @@
  * @Autor: za-wangxuezhong
  * @Date: 2020-09-20 22:38:08
  * @LastEditors: za-wangxuezhong
- * @LastEditTime: 2020-11-19 11:26:26
+ * @LastEditTime: 2020-11-23 11:54:52
  * @Description:
  * @ToDo:
  * @JiraID: SOMPO-
@@ -10,7 +10,7 @@
 import * as vscode from 'vscode';
 import {zaTreeItem, zaTreeItems} from './define';
 import {TreeDataProvider, EventEmitter, Event} from 'vscode';
-import {ApiService, ApiServices} from './data';
+import {ApiService, ApiServices} from './getData';
 
 export class zaDataProvider implements TreeDataProvider<zaTreeItem>{
     private _onDidChangeTreeData: EventEmitter<any> = new EventEmitter<any>();
@@ -40,7 +40,7 @@ export class zaDataProvider implements TreeDataProvider<zaTreeItem>{
 
     getChildren(element: zaTreeItem | zaTreeItems) {
         if (!element) return this.services.getChapters();
-        return this.service.getChapter();
+        return this.service.getChapter(element.description);
     }
 
     getParent(element: zaTreeItem) {

@@ -2,7 +2,7 @@
  * @Autor: za-wangxuezhong
  * @Date: 2020-09-20 22:10:52
  * @LastEditors: za-wangxuezhong
- * @LastEditTime: 2020-11-17 04:28:48
+ * @LastEditTime: 2020-11-23 13:46:17
  * @Description:
  * @ToDo:
  * @JiraID: SOMPO-
@@ -13,10 +13,13 @@ export interface define {
     content: string;
     hashId: string;
 }
+export interface Square extends define {
+    position: string;
+}
 
 export class zaTreeItem extends TreeItem {
-
-    constructor(info: define) {
+    position: string;
+    constructor(info: Square) {
         super('', TreeItemCollapsibleState.None);
         this.label = 'ZA';
         this.id = info.hashId;
@@ -26,16 +29,18 @@ export class zaTreeItem extends TreeItem {
             command: 'za.click',
             arguments: [
                 info.hashId,
-                info.content
+                info.content,
+                info.position,
             ],
         };
         this.tooltip = '点击查看详情';
+        this.position = info.position;
     }
     isDirectory = false;
 }
 export class zaTreeItems extends TreeItem {
-
-    constructor(info: define) {
+    position: string;
+    constructor(info: Square) {
         super('', TreeItemCollapsibleState.Expanded);
         this.label = 'ZA';
         this.id = info.hashId;
@@ -49,6 +54,7 @@ export class zaTreeItems extends TreeItem {
             ],
         };
         this.tooltip = '点击查看目录';
+        this.position = info.position;
     }
     isDirectory = true;
 }
